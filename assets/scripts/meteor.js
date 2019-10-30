@@ -13,6 +13,11 @@ cc.Class({
 
     // will be called once when two colliders begin to contact
     onBeginContact: function (contact, selfCollider, otherCollider) {
-        this.node.destroy();
+        if (this.pool != undefined){
+            this.pool.put(this.node);
+        }
+        else {
+            this.node.destroy();
+        }
     },
 });

@@ -32,7 +32,7 @@ cc.Class({
         this.score= 0;
 
         var event = new cc.Event.EventCustom('score', true);
-        event.setUserData ({ score : 1 });
+        event.setUserData ({ score : 0 });
         this.onAddScore (event);
     },
 
