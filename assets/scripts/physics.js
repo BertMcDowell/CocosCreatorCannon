@@ -1,34 +1,54 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-
+// This is the physics component and provides a scene level interface
+// to configuring the directors physics manager.
 cc.Class({
     extends: cc.Component,
 
+    // Properties that will be displayed in the properties tab
     properties: {
-        active: true,
-        debug: false,
+        active: {
+            default: true,
+            tooltip: "Enable / disable physics"
+        },
+        debug: {
+            default: false,
+            tooltip: "Enable / disable the debug flags"
+        },
+ 
+        gravity: {
+            default: cc.v2(0, -320),
+            tooltip: "Physics world gravity."
+        },
+        ptm_ration: {
+            default: 32,
+            tooltip: "The ratio transform between physics unit and pixel unit, generally is 32."
+        },
 
-        gravity: cc.v2(0, -10),
+        accumulator: {
+            default: false,
+            tooltip: "Enabled accumulator, then will call step function with the fixed time step FIXED_TIME_STEP."
+        },
+        fixedTimeStep: {
+            default: 60,
+            tooltip: "Specify the fixed time step.",
+        },
 
-        accumulator: false,
-        fixedTimeStep: 60,
-        velocityIterations: 10,
-        positionIterations: 10,
+        velocityIterations: {
+            default: 10,
+            tooltip: "The velocity iterations for the velocity constraint solver.",
+        },     
+        positionIterations: {
+            default: 10,
+            tooltip: "The position Iterations for the position constraint solver.",
+        }
     },
-
+ 
     // LIFE-CYCLE CALLBACKS:
-
+ 
     onLoad () {
-        var manager = cc.director.getPhysicsManager();
-
+        let manager = cc.director.getPhysicsManager();
+ 
         manager.enabled = this.active;
+
         if (this.debug) {
             manager.debugDrawFlags = 
             cc.PhysicsManager.DrawBits.e_aabbBit |
@@ -41,16 +61,22 @@ cc.Class({
             manager.debugDrawFlags = 0;
         }
 
-        // Enable settings for physics timestep
+        manager.gravity = this.gravity;
+        manager.PTM_RATIO = this.ptm_ratio;
+        
         manager.enabledAccumulator = this.accumulator;
-
-        // Physics timestep, default FIXED_TIME_STEP is 1/60
         manager.FIXED_TIME_STEP = 1/this.fixedTimeStep;
-
-        // The number of iterations per update of the Physics System processing speed is 10 by default
+ 
         manager.VELOCITY_ITERATIONS = this.velocityIterations;
-
-        // The number of iterations per update of the Physics processing location is 10 by default
         manager.POSITION_ITERATIONS = this.positionIterations;
     },
+
+    onDestroy () {
+        let manager = cc.director.getPhysicsManager();
+ 
+        // Disable the physics when destroyed
+        manager.enabled = false;
+        // Reset the debug flags
+        manager.debugDrawFlags = 0;
+    }
 });

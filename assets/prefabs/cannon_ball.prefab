@@ -13,12 +13,11 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "cannon_bullet",
+    "_name": "cannon_ball",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
     "_active": false,
-    "_level": 1,
     "_components": [
       {
         "__id__": 2
@@ -46,13 +45,29 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 225,
-      "height": 219
+      "width": 32,
+      "height": 32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
       "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float32Array",
+      "array": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
     },
     "_eulerAngles": {
       "__type__": "cc.Vec3",
@@ -63,24 +78,9 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
+    "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "",
-    "_trs": {
-      "__type__": "TypedArray",
-      "ctor": "Float32Array",
-      "array": [
-        326.656005859375,
-        334.5899963378906,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0.20000000298023224,
-        0.20000000298023224,
-        1
-      ]
-    }
+    "_id": ""
   },
   {
     "__type__": "cc.Sprite",
@@ -98,7 +98,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9a08f3e6-f79b-46db-8e23-cea44b511a2c"
+      "__uuid__": "a0759d0f-4fe2-4c37-bb18-f046e991589e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -134,7 +134,7 @@
     },
     "_angularVelocity": 0,
     "_fixedRotation": false,
-    "enabledContactListener": true,
+    "enabledContactListener": false,
     "bullet": true,
     "awakeOnLoad": true,
     "_id": ""
@@ -158,11 +158,11 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 105,
+    "_radius": 16,
     "_id": ""
   },
   {
-    "__type__": "0c533Fq2XdOWpK9RmKj7mSN",
+    "__type__": "6467evM3YxMo6NK0WC5k5YU",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -178,9 +178,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4f015299-0ab9-4e49-af49-d11e56647778"
+      "__uuid__": "e282afa3-4457-4065-b458-0102e40b317b"
     },
-    "fileId": "6fpwiPqqRJzYnYPJtdE3Fb",
+    "fileId": "5fma+lM6BDTLirYfzOWBiu",
     "sync": false
   }
 ]
